@@ -22,6 +22,8 @@ Or install it yourself as:
 $ gem install epi_doc_validator
 ```
 
+(See project at [rubygems.org](https://rubygems.org/gems/epi_doc_validator))
+
 ## Requirements
 
 * JRuby >= 9.2.9
