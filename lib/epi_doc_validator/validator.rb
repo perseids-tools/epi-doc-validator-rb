@@ -1,12 +1,24 @@
+require 'nokogiri'
+
 require_relative './sem_ver'
+require_relative './errors'
 
 module EpiDocValidator
   class Validator
-    def initialize
-    end
-
     def versions
       schemas.keys
+    end
+
+    def errors(xml, version: 'latest')
+      doc = Nokogiri::XML(xml)
+
+      return doc.errors.map(&:to_s) unless doc.errors.empty?
+
+      rng_for(version).validate(Nokogiri::XML(xml)).map(&:to_s)
+    end
+
+    def valid?(xml, version: 'latest')
+      errors(xml, version: version).empty?
     end
 
     private
@@ -22,8 +34,12 @@ module EpiDocValidator
       @schemas = versions.each_with_object({}) { |n, m| m[n] = nil }
     end
 
-    def read_schema_file(file)
-      @schemas[file] ||= File.read(schema_path(file))
+    def rng_for(version)
+      raise VersionNotFoundError unless schemas.member?(version)
+      return schemas[version] if schemas[version]
+
+      rng = File.read(schema_path(File.join(version, 'tei-epidoc.rng')))
+      schemas[version] ||= Nokogiri::XML::RelaxNG(rng)
     end
   end
 end
