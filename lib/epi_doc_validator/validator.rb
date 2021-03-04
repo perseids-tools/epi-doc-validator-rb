@@ -5,21 +5,25 @@ module EpiDocValidator
     def initialize
     end
 
+    def versions
+      schemas.keys
+    end
+
     private
 
-    def sort_schema_versions(versions)
-    end
-
     def schema_path(file)
-      File.expand_path(File.join('../../vendor/schema/', file), __FILE__)
+      File.expand_path(File.join('../../vendor/schema/', file), __dir__)
     end
 
-    def schema_versions
-      @schema_versions ||= SemVer.sort(Dir.children(schema_path('')))
+    def schemas
+      return @schemas if @schemas
+
+      versions = SemVer.sort(Dir.children(schema_path('')))
+      @schemas = versions.each_with_object({}) { |n, m| m[n] = nil }
     end
 
     def read_schema_file(file)
-      File.read(schema_path(file))
+      @schemas[file] ||= File.read(schema_path(file))
     end
   end
 end

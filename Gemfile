@@ -1,9 +1,10 @@
-source "https://rubygems.org"
+source 'https://rubygems.org'
 
 gemspec
 
-gem "gnar-style"
-gem "rake"
-gem "rspec"
-gem "rubocop-rake"
-gem "rubocop-rspec"
+gem 'gnar-style'
+gem 'rake'
+gem 'rspec'
+gem 'rspec-its'
+gem 'rubocop-rake'
+gem 'rubocop-rspec'
