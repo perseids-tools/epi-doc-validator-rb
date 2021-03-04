@@ -1,5 +1,3 @@
-require 'epi_doc_validator/validator'
-
 RSpec.describe EpiDocValidator::Validator do
   let(:valid_doc) { fixture('valid_doc.xml') }
   let(:invalid_doc) { fixture('invalid_doc.xml') }
