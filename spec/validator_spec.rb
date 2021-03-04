@@ -16,11 +16,7 @@ RSpec.describe EpiDocValidator::Validator do
   describe '#errors' do
     it 'returns errors when the XML does not validate against the schema' do
       expect(validator.errors(invalid_doc)).to eq([
-        '52:0: ERROR: Did not expect element ab there',
-        '53:0: ERROR: Element div has extra content: ab',
-        '51:0: ERROR: Did not expect element div there',
-        '51:0: ERROR: Expecting element q, got div',
-        '51:0: ERROR: Element body failed to validate content',
+        '-1:-1: ERROR: unknown element "incorrect" from namespace "http://www.tei-c.org/ns/1.0"',
       ])
     end
 
@@ -31,15 +27,15 @@ RSpec.describe EpiDocValidator::Validator do
     it 'validates against the version given by the version: argument' do
       expect(validator.errors(valid9, version: '9.1')).to eq([])
       expect(validator.errors(valid9, version: '8.23')).to eq([
-        '52:0: ERROR: Did not expect element sp there',
-        '53:0: ERROR: Element div has extra content: sp',
-        '51:0: ERROR: Did not expect element div there',
-        '51:0: ERROR: Element body failed to validate content',
+        '-1:-1: ERROR: attribute "toWhom" not allowed at this point; ignored',
       ])
     end
 
     it 'returns errors when the XML is malformed' do
-      expect(validator.errors('zoboomafoo')).to eq(["1:1: FATAL: Start tag expected, '<' not found"])
+      expect(validator.errors('zoboomafoo')).to eq([
+        'Content is not allowed in prolog.',
+        'Content is not allowed in prolog.',
+      ])
     end
 
     it 'raises an exception when the version does not exist' do

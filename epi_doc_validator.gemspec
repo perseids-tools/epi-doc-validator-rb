@@ -22,6 +22,7 @@ Gem::Specification.new do |spec|
   spec.bindir        = 'exe'
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ['lib']
+  spec.platform = 'java'
 
   spec.add_dependency 'nokogiri', '~> 1.10'
 end

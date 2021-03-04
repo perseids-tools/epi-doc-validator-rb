@@ -1,6 +1,5 @@
 require 'bundler/setup'
 require 'epi_doc_validator'
-require 'pry-byebug'
 require 'rspec/its'
 
 def fixture(file)
