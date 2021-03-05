@@ -68,6 +68,10 @@ validator.valid?(xml, version: '9.1') # => array of errors (`[]` if valid)
 
 * `bundle exec rubocop`
 
+### Auditing the code
+
+* `bundle exec bundler-audit check --update`
+
 ### Updating schemas
 
 * `bash scripts/update-schema.sh` (requires `wget`)

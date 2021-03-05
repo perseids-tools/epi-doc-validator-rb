@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 gemspec
 
+gem 'bundler-audit'
 gem 'gnar-style'
 gem 'rake'
 gem 'rspec'

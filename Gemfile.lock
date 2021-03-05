@@ -8,6 +8,9 @@ GEM
   remote: https://rubygems.org/
   specs:
     ast (2.4.2)
+    bundler-audit (0.7.0.1)
+      bundler (>= 1.2.0, < 3)
+      thor (>= 0.18, < 2)
     diff-lcs (1.4.4)
     gnar-style (0.13.0)
       rubocop (>= 1.0.0, < 2.0)
@@ -71,6 +74,7 @@ PLATFORMS
   java
 
 DEPENDENCIES
+  bundler-audit
   epi_doc_validator!
   gnar-style
   rake

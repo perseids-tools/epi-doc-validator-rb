@@ -27,3 +27,6 @@ jobs:
 
       - name: Lint code
         run: bundle exec rubocop
+
+      - name: Audit code
+        run: bundle exec bundler-audit check --update
