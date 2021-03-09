@@ -36,10 +36,13 @@ module EpiDocValidator
 
     def rng_for(version)
       raise VersionNotFoundError unless schemas.member?(version)
-      return schemas[version] if schemas[version]
 
-      rng = File.read(schema_path(File.join(version, 'tei-epidoc.rng')))
-      schemas[version] ||= Nokogiri::XML::RelaxNG(rng)
+      unless schemas[version]
+        rng = File.read(schema_path(File.join(version, 'tei-epidoc.rng')))
+        schemas[version] = Nokogiri::XML(rng)
+      end
+
+      Nokogiri::XML::RelaxNG.from_document(schemas[version])
     end
   end
 end

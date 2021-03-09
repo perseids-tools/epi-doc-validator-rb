@@ -41,6 +41,13 @@ RSpec.describe EpiDocValidator::Validator do
         validator.errors(valid_doc, version: 'nonexistent')
       end.to raise_error(EpiDocValidator::VersionNotFoundError)
     end
+
+    it 'returns the same result when called more than once' do
+      validator.errors(invalid_doc)
+      expect(validator.errors(invalid_doc)).to eq([
+        '-1:-1: ERROR: unknown element "incorrect" from namespace "http://www.tei-c.org/ns/1.0"',
+      ])
+    end
   end
 
   describe '#valid?' do
