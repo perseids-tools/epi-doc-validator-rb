@@ -47,10 +47,10 @@ validator.valid?(xml, version: '9.1') # => `true` or `false`
 validator.versions # => `["8", "8-rc1", "8.2", ... , "dev", "latest"]`
 
 # Validate and return a list of errors
-validator.valid?(xml) # => array of errors (`[]` if valid)
+validator.errors(xml) # => array of errors (`[]` if valid)
 
 # Validate and return a list of errors for a specific schema version
-validator.valid?(xml, version: '9.1') # => array of errors (`[]` if valid)
+validator.errors(xml, version: '9.1') # => array of errors (`[]` if valid)
                                       # => raises exception if version doesn't exist
 ```
 

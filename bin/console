@@ -1,7 +1,6 @@
 #!/usr/bin/env ruby
 
 require 'irb'
-
 require 'bundler/setup'
 require 'epi_doc_validator'
 
